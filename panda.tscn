@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://dupdy14vc5hve"]
+
+[ext_resource type="Texture2D" uid="uid://5s3p3cvkuy0v" path="res://panda.png" id="1_kog0b"]
+[ext_resource type="Script" path="res://panda.gd" id="1_mqgl5"]
+[ext_resource type="Texture2D" uid="uid://dhoict5nowb0x" path="res://pandayllatunud.png" id="3_qm14k"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wkfbb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kog0b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qm14k")
+}],
+"loop": true,
+"name": &"surprised",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dma80"]
+radius = 146.0
+height = 368.0
+
+[node name="Panda" type="Area2D"]
+script = ExtResource("1_mqgl5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_wkfbb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6, -14)
+shape = SubResource("CapsuleShape2D_dma80")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

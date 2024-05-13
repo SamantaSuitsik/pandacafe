@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjhd3x7adx5n0"]
+
+[ext_resource type="Texture2D" uid="uid://cqx6psmbo5ppp" path="res://pandacafebg1.png" id="1_d7q5b"]
+[ext_resource type="Script" path="res://main.gd" id="1_nlh4w"]
+[ext_resource type="PackedScene" uid="uid://dupdy14vc5hve" path="res://panda.tscn" id="2_y3o5a"]
+[ext_resource type="PackedScene" uid="uid://yqq5ncnnprs0" path="res://pandaking.tscn" id="3_gjh7x"]
+[ext_resource type="PackedScene" uid="uid://bu1gv3a2aqnfi" path="res://table.tscn" id="4_facwy"]
+[ext_resource type="PackedScene" uid="uid://b04kthpwejldk" path="res://panda_2.tscn" id="5_2q824"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_nlh4w")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Node2D"]
+offset_right = 1641.0
+offset_bottom = 1005.0
+mouse_filter = 2
+texture = ExtResource("1_d7q5b")
+
+[node name="Table" parent="." instance=ExtResource("4_facwy")]
+position = Vector2(661, 365)
+
+[node name="Panda" parent="." instance=ExtResource("2_y3o5a")]
+position = Vector2(1607, 3)
+
+[node name="Pandaking" parent="." groups=["pandas"] instance=ExtResource("3_gjh7x")]
+position = Vector2(1131, 684)
+
+[node name="Panda2" parent="." groups=["pandas"] instance=ExtResource("5_2q824")]
+position = Vector2(280, 750)
+
+[connection signal="body_entered" from="Table" to="Panda2" method="_on_table_body_entered"]
+[connection signal="table_clicked" from="Table" to="Panda" method="_on_table_table_clicked"]
+[connection signal="table_clicked" from="Table" to="Panda2" method="_on_table_table_clicked"]
